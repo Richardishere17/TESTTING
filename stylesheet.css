@@ -1,3 +1,4 @@
+/* Reintroduced 1:1 styles from your stylesheet.css */
 *{
 margin:0;
 padding:0;
@@ -7,7 +8,7 @@ box-sizing:border-box;
 body{
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 400; /* Fixed weight from original */
   font-style: normal;
   font-variation-settings: "width" 100;
 background:#f4f6f8;
@@ -15,16 +16,18 @@ background:#f4f6f8;
 
 .container{
 max-width:auto;
-
 margin:auto;
 padding:30px;
 }
+
 #titlesize{
     font-size: 20px;
 }
+
 #description{
     font-size: 15px;
 }
+
 #map {
     height:700px;
 width:100%;
@@ -32,10 +35,10 @@ margin-bottom:20px;
 border-radius:10px;
 margin-top: 20px;
 background:#f4f6f8;
-    }
+z-index: 1;
+}
 
 /* HEADER */
-
 .header{
 background:white;
 padding:25px;
@@ -49,7 +52,6 @@ margin-bottom:8px;
 }
 
 /* PRIORITY SECTIONS */
-
 .priority{
 padding:25px;
 border-radius:10px;
@@ -61,7 +63,6 @@ margin-bottom:20px;
 }
 
 /* COLORS */
-
 .high{
 background:#ffe5e5;
 border-left:8px solid red;
@@ -78,7 +79,6 @@ border-left:8px solid #f4d35e;
 }
 
 /* GRID */
-
 .parish-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -86,7 +86,6 @@ gap:20px;
 }
 
 /* PARISH CARD */
-
 .parish-card{
 background:white;
 padding:20px;
@@ -99,7 +98,6 @@ margin-bottom:15px;
 }
 
 /* COMMUNITY */
-
 .community{
 margin-bottom:10px;
 border-radius:6px;
@@ -117,20 +115,17 @@ background:#eee;
 }
 
 /* COMMUNITY INFO */
-
 .community-info{
 padding:10px;
 border-top:1px solid #ddd;
 }
 
 /* NEEDS */
-
 .needs{
 margin-bottom:8px;
 }
 
 /* INJURY STATUS */
-
 .injured{
 color:red;
 font-weight:bold;
@@ -141,34 +136,39 @@ color:green;
 font-weight:bold;
 }
 
+/* Status Indicator (Added for visibility of refresh) */
+#update-status {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
 /* RESPONSIVE */
-
 @media(max-width:768px){
-
 .header h1{
 font-size:1.6rem;
 }
-
-}
-/* Drop animation */
-@keyframes dropIn {
-  0% {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
-  70% {
-    transform: translateY(10px);
-    opacity: 1;
-  }
-  85% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
-/* Apply animation to marker */
-.leaflet-marker-icon.drop-animation {
-  animation: dropIn 0.6s ease;
+/* Animations from your original files */
+@keyframes markerDrop {
+    0% { opacity: 0; transform: translateY(-100px) scale(0.5); }
+    60% { opacity: 1; transform: translateY(10px) scale(1.1); }
+    80% { transform: translateY(-5px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.drop-animation {
+    animation: markerDrop 0.6s ease-out forwards;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse 0.5s ease-in-out;
 }
